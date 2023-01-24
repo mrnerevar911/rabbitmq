@@ -1,0 +1,20 @@
+version: "3.2"
+services:
+    rabbitmq:
+        image: rabbitmq:3-management-alpine
+        container_name: ${RBMQ_HOST}
+        ports:
+            - ${RBMQ_PORT}:5672
+            - ${RBMQ_MANAGER_PORT}:15672
+        environment:
+            - RABBITMQ_DEFAULT_USER=${RBMQ_USER}
+            - RABBITMQ_DEFAULT_PASS=${RBMQ_PASSWORD}
+            - RABBITMQ_DEFAULT_VHOST=${RBMQ_VHOST}
+        volumes:
+            - ./docker/rabbitmq/data/:/var/lib/rabbitmq/
+            - ./docker/rabbitmq/log/:/var/log/rabbitmq
+        networks:
+            - fp-network
+networks:
+    fp-network:
+        external: true
