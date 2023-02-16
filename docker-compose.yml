@@ -1,7 +1,8 @@
 version: "3.2"
 services:
     rabbitmq:
-        image: rabbitmq:3-management-alpine
+        build:
+            context: ./docker/rabbitmq
         container_name: ${RBMQ_HOST}
         restart: unless-stopped
         ports:

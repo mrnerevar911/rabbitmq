@@ -1,7 +1,10 @@
 up: docker-up
 down: docker-down
 restart: docker-restart
-init: docker-down-clear docker-pull docker-up
+init: docker-down-clear docker-pull docker-build docker-up
+
+docker-build:
+	docker-compose build
 
 docker-up:
 	docker-compose up --detach --remove-orphans
